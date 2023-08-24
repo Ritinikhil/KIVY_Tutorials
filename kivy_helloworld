@@ -1,0 +1,7 @@
+from kivymd.app import MDApp
+from kivymd.uix.label import MDLabel,MDIcon
+class DemoApp(MDApp):
+    def build(self):
+        label=MDLabel(text="Hello World",halign='center',theme_text_color='Custom',text_color=(0,0,0,1),font_style='H1')
+        return label
+DemoApp().run()
