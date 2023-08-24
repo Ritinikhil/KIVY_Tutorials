@@ -1,0 +1,12 @@
+from kivymd.app import MDApp
+from kivymd.uix.screen import Screen
+from kivymd.uix.button import MDFlatButton,MDRoundFlatButton,MDIconButton
+class Demopp(MDApp):
+    def build(self):
+        screen=Screen()
+        btn1=MDIconButton(icon='language-python')
+        btn=MDRoundFlatButton(text="Send",pos_hint={'center_x':0.5,'center_y':0.5})
+        screen.add_widget(btn)
+        screen.add_widget(btn1)
+        return screen
+Demopp().run()
