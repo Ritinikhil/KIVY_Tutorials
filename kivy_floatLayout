@@ -1,0 +1,28 @@
+import kivy
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.uix.floatlayout import FloatLayout
+#from kivy.config import Config
+
+#Config.set('graphics', 'resizable', True)
+
+# creating the App class
+class FloatApp(App):
+
+   def build(self):
+      # creating Floatlayout
+      Flt = FloatLayout()
+
+      btn = Button(text='Hello world',
+         size_hint=(0.5 ,0.2),
+         pos=(100, 200),
+         background_normal='',
+         background_color=(1, 0, 1, 1))
+
+      # adding button widget
+      Flt.add_widget(btn)
+
+      return Flt
+
+# Run the app
+FloatApp().run()
