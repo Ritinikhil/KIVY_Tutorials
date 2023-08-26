@@ -1,0 +1,18 @@
+import kivy
+kivy.require('1.11.1') # Replace with your Kivy version
+
+from kivy.app import App
+from kivy.uix.label import Label
+from kivy.core.text import LabelBase, DEFAULT_FONT
+
+class CustomFontApp(App):
+   def build(self):
+      # Register the custom font with Kivy
+      LabelBase.register(name='CustomFont', fn_regular='font_sample.ttf')
+
+      # Create a label widget and set its font to the custom font
+      label = Label(text='Tutorialspoint!!! \n Simply easy learning at your fingertips..... ', font_name='CustomFont', font_size='50sp')
+      return label
+
+if __name__ == '__main__':
+   CustomFontApp().run()
