@@ -1,0 +1,60 @@
+from kivy.app import App
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.image import Image
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+from kivy.uix.recycleview import RecycleView
+from kivy.uix.recycleview.views import RecycleDataViewBehavior
+from kivy.uix.recycleboxlayout import RecycleBoxLayout
+from kivy.uix.behaviors import FocusBehavior
+from kivy.uix.button import Button
+from kivy.properties import StringProperty
+
+class ChatBubble(RecycleDataViewBehavior, BoxLayout):
+    text = StringProperty()
+    image_source = StringProperty()
+
+class ChatListView(RecycleView):
+    def __init__(self, **kwargs):
+        super(ChatListView, self).__init__(**kwargs)
+        self.data = [
+            {'text': 'Hello!', 'image_source': 'person1.jpg'},
+            {'text': 'Hi there!', 'image_source': 'person2.jpg'},
+            # Add more chat bubbles here...
+        ]
+        self.viewclass = 'ChatBubble'
+        self.orientation = 'vertical'
+        self.scroll_y = 0
+
+    def refresh_view_layout(self, *args):
+        self.layout_manager.refresh_from_data()
+
+class DisplayWidget(FloatLayout):
+    def __init__(self, **kwargs):
+        super(DisplayWidget, self).__init__(**kwargs)
+
+        # Set the background image
+        background = Image(source='img.png', keep_ratio=False, allow_stretch=True)
+        self.add_widget(background)
+
+        # Create a container for the ListView
+        container = BoxLayout(orientation='vertical')
+
+        # Create the ListView
+        chat_list = ChatListView()
+
+        # Set the background image for the ListView
+        chat_list.background_normal = 'img.png'
+
+        container.add_widget(chat_list)
+
+        # Position the container over the background image
+        container.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
+        self.add_widget(container)
+
+class MyApp(App):
+    def build(self):
+        return DisplayWidget()
+
+if __name__ == '__main__':
+    MyApp().run()
